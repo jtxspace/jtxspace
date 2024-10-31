@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <title>500 Hz Tone</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <style>
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height:100%;
+      }
+      .tone500 {
+        width:250px;
+        height:125px;
+        white-space: nowrap;
+        background-color:black;
+        color:yellow;
+        font-family: Kanit;
+        font-weight: 700;
+        font-size:300%;
+        padding:0.5vw;
+        border-radius: 20px;
+      }
+      .tone500:hover {
+        color:orange;
+        cursor:pointer;
+      }
+      .tone500:active {
+        background-color:rgb(4, 21, 94);
+      }
+    </style>
+    </head>
+    <body style="background-color:lightgray;margin:1.5em;">
+      <div class="container">
+      <button class="tone500" id="playToneButton">Play Tone</button>
+      </div>
+      <script>
+        function playTone() {
+              const button = document.getElementById('playToneButton');
+              button.disabled = true;
+          
+              // Create AudioContext and oscillator
+              const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+              const oscillator = audioContext.createOscillator();
+              oscillator.type = 'sine';  // Sine wave
+              oscillator.frequency.setValueAtTime(500, audioContext.currentTime);  // 500 Hz
+          
+              // Connect oscillator to audio context's destination (speakers)
+              oscillator.connect(audioContext.destination);
+              oscillator.start();
+          
+              // Stop oscillator after 5 seconds
+              setTimeout(() => {
+                oscillator.stop();
+                audioContext.close();
+                button.disabled = false;
+              }, 5000);
+            }
+            document.getElementById('playToneButton').addEventListener('click', playTone);
+        </script>
+    
+    </body>
