@@ -108,9 +108,9 @@
         }
 
         .copy-notification {
-            font-size: 0.9rem;
+            
             color: green;
-            margin-top: 5px;
+            margin-top: 10px;
         }
 
         p#outputLabel {
@@ -184,9 +184,9 @@
 
         function resetForm() {
             document.getElementById("form").reset();
-            document.getElementById("output").innerText = "";
-            document.getElementById("outputLabel").innerText = "";
-            document.getElementById("copyNotification").innerText = "";
+            document.getElementById("output").innerHTML = "&nbsp;";
+            document.getElementById("outputLabel").innerHTML = "&nbsp;";
+            document.getElementById("copyNotification").innerHTML = "&nbsp;";
         }
     </script>
 </head>
@@ -265,9 +265,9 @@
     </form>
 
     <div class="output-container">
-        <p id="outputLabel"></p>
-        <p id="output"></p>
-        <p id="copyNotification" class="copy-notification"></p>
+        <p id="outputLabel">&nbsp;</p>
+        <p id="output">&nbsp;</p>
+        <p id="copyNotification" class="copy-notification">&nbsp;</p>
     </div>
 </body>
 </html>
